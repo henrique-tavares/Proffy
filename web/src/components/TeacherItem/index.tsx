@@ -3,34 +3,57 @@ import React from 'react';
 import whastappIcon from '../../assets/images/icons/whatsapp.svg';
 
 import './styles.css';
+import api from '../../services/api';
 
-function TeacherItem() {
+export interface Teacher {
+  id: number,
+  name: string,
+  avatar: string,
+  whatsapp: string
+  bio: string,
+  subject: string,
+  cost: number
+}
+
+interface TeacherItemProps {
+  teacher: Teacher
+}
+
+const TeacherItem: React.FC<TeacherItemProps> = ({ teacher }) => {
+
+  async function createNewConnection() {
+    await api.post('connections', {
+      user_id: teacher.id,
+    });
+  }
+
   return (
     <article className="teacher-item">
       <header>
-        <img src="https://avatars0.githubusercontent.com/u/51230543?s=460&u=8fe2613eff1682174f89904c5b5ba9de6e463433&v=4" alt="Henrique Tavares" />
+        <img src={ teacher.avatar } alt={ teacher.name } />
         <div>
-          <strong>Henrique Tavares</strong>
-          <span>Química</span>
+          <strong>{ teacher.name }</strong>
+          <span>{ teacher.subject }</span>
         </div>
       </header>
 
-      <p>
-        Entusiasta das melhores tecnologias de química avnçada.
-        <br /><br />
-        Apaixonado por expolir coisas em laboratório e por mudar a vida das pessoas através de experiências.
-      </p>
+      <p>{ teacher.bio }</p>
 
       <footer>
         <p>
           Preço/hora
-          <strong>R$ 80,00</strong>
+          <strong>R$ { teacher.cost }</strong>
         </p>
 
-        <button type="button">
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={ createNewConnection }
+          href={ `https://wa.me/${teacher.whatsapp}` }
+        >
           <img src={ whastappIcon } alt="Whatsapp" />
           Entrar em contato
-        </button>
+        </a>
       </footer>
     </article>
   );
