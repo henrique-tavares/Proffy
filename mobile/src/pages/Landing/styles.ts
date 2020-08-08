@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
         color: '#FFF',
         fontSize: 20,
         lineHeight: 30,
-        marginTop: 40,
+        marginTop: 30,
     },
 
     titleBold: {
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
         width: '48%',
         borderRadius: 8,
         padding: 24,
-        // marginBottom: 20,
+        // marginBottom: 10,
         justifyContent: 'space-between',
         // alignItems: 'center',
         // backgroundColor: '#333'
@@ -60,9 +60,9 @@ const styles = StyleSheet.create({
         fontFamily: 'Poppins_400Regular',
         color: '#D4C2FF',
         fontSize: 12,
-        lineHeight: 10,
+        lineHeight: 16,
         // maxWidth: 140,
-        marginTop: 10
+        marginTop: 20
     }
 });
 
